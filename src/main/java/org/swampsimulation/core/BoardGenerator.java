@@ -24,7 +24,6 @@ public class BoardGenerator {
     public BoardGenerator(SimulationConfig simConfig, CsvLogger logger) {
         this.simConfig = simConfig;
         this.logger = logger;
-
     }
 
     public void placePlants(Board board) {

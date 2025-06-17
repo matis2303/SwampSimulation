@@ -35,6 +35,7 @@ public class BoardGenerator {
         int LiliesCount = (int) (Lilies * maxNumber);
         int BushesCount = (int) (Bushes * maxNumber);
 
+
         int sum = LiliesCount + BushesCount;
         sum = maxNumber - sum;
         if (sum > 0) {

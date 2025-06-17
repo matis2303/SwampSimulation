@@ -20,7 +20,6 @@ public class Board {
     private int height;
     private Simulation simulation;
 
-
     public Board(int width, int height) {
         this.animalsOnBoard = new ArrayList<>();
         this.width = width;

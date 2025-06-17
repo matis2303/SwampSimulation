@@ -50,7 +50,6 @@ public class BoardGenerator {
             Point p;
 
             int angle = rand.nextInt(360);
-
             switch (frogType) {
                 case 0:
                     do {

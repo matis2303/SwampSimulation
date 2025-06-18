@@ -45,13 +45,13 @@ public class Board {
 
     /**
      * Retrives animal at a Point position
-     * @param pos position
+     * @param pos - position
      * @return Animal at a given point or null if none were found
      */
 
 
     public Animal getAnimalAt(Point pos) {
-        for (Animal animal : animalsOnBoard) {
+        for (Animal animal : animalsOnBoard) { //iterates for animals on board
             if (animal.getPosition().equals(pos)) {
                 return animal;
             }
@@ -128,8 +128,8 @@ public class Board {
     public List<Animal> getNearbyAnimals(Animal attacker, int range) {
         ArrayList<Animal> nearby = new ArrayList<>();
         for (Animal animal : animalsOnBoard) {
-            double distance = animal.getPosition().getDistance(attacker.getPosition());
-            if (distance <= range) {
+            double distance = animal.getPosition().getDistance(attacker.getPosition()); //iterates each animal
+            if (distance <= range) { //compares distance to range
                 if(animal.isAlive()) {
                     nearby.add(animal);
                 }

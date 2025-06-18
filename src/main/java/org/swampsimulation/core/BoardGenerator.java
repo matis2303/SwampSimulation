@@ -73,7 +73,7 @@ public class BoardGenerator {
                         X = Math.max(0, Math.min(X, board.getWidth() - 80));
                         Y = Math.max(0, Math.min(Y, board.getHeight() - 80));
                         p = new Point(X, Y);
-                    } while (SwampArea.isOnMud(p));
+                    } while (SwampArea.isOnMud(p)); //bushes shouldn't be on mud
                     Bushes bushes = new Bushes(p);
                     bushes.setRotation(angle);
                     board.addPlant(bushes);
@@ -85,7 +85,7 @@ public class BoardGenerator {
                         X = Math.max(0, Math.min(X, board.getWidth() - 80));
                         Y = Math.max(0, Math.min(Y, board.getHeight() - 80));
                         p = new Point(X, Y);
-                    } while (!SwampArea.isOnMud(p));
+                    } while (!SwampArea.isOnMud(p)); //lilies should be on mud
                     Lily lily = new Lily(p);
                     lily.setRotation(angle);
                     board.addPlant(lily);
@@ -135,34 +135,34 @@ public class BoardGenerator {
                 X = rand.nextInt(board.getWidth() - 40);
                 Y = rand.nextInt(board.getHeight() - 40 - 100) + 100;
                 p = new Point(X, Y);
-            } while (SwampArea.isOnMud(p));
+            } while (SwampArea.isOnMud(p)); //frogs cannot spawn on mud
 
             int angle = rand.nextInt(360);
 
             switch (frogType) {
-                case 0:
+                case 0: //BufoBufo frog
                     BufoBufoFrog bufo = new BufoBufoFrog(p, this.logger);
                     bufo.setRotation(angle);
                     board.addAnimal(bufo);
                     break;
-                case 1:
+                case 1: // PacmanFrog
                     PacmanFrog pac = new PacmanFrog(p, this.logger);
                     pac.setRotation(angle);
                     board.addAnimal(pac);
                     break;
-                case 2:
+                case 2:// TomatoFrog
                     TomatoFrog tom = new TomatoFrog(p, this.logger);
                     tom.setRotation(angle);
                     board.addAnimal(tom);
                     break;
-                case 3:
+                case 3:// TreeFrog
                     TreeFrog tree = new TreeFrog(p, this.logger);
                     tree.setRotation(angle);
                     board.addAnimal(tree);
                     break;
             }
         }
-        System.out.print(board.getAllAnimals().size());
+        System.out.print(board.getAllAnimals().size()); //log total number of created animals
     }
     /**
      * Places a predefined initial number of Flies at the board
@@ -173,7 +173,7 @@ public class BoardGenerator {
     public void placeInitialFlies(Board board){
         for(int x = 0; x < 22; x++) {
             int X = rand.nextInt(board.getWidth() - 40);
-            int Y = rand.nextInt(board.getHeight() - 40-100)+100;
+            int Y = rand.nextInt(board.getHeight() - 40-100)+100; //added buffer to not spawn under UI panel
             Point p = new Point(X, Y);
             int angle = rand.nextInt(360);
             Fly fly = new Fly(p,logger);

@@ -54,6 +54,14 @@ public class Simulation {
             System.out.println("Simulation setup. Board is null or has no animal list.");
         }
     }
+    /**
+     * Runs current gameLoop, represents one tick of the simulation
+     * Updates all the animals
+     * Counts number of flies and if some are missing adds required number
+     * It's also used to log current game tick number of Animals
+     *
+     * @param currentTick - current tick of the simulation
+     */
 
     public void gameLoop(int currentTick) {
         int Flies=0;
@@ -92,6 +100,14 @@ public class Simulation {
             logger.logState(board.getAllAnimals(), currentTick);
         }
     }
+
+    /**
+     * Determines a random position for snake spawn and target point
+     * The snake can spawn in any of the sides of the board
+     * Buffer makes sure the snake appears and disappears outside the board visible area
+     *
+     * @return Returns Points ArrayList containing spawn Point and target Point
+     */
     public ArrayList<Point> setSnakePosition() {
         int X = 0;
         int Y = 0;
@@ -138,40 +154,79 @@ public class Simulation {
         return points;
     }
 
+    /**
+     * Returns current board
+     * @return Board object
+     */
+
     public Board getBoard() {
         return board;
     }
 
-
+    /**
+     * Returns current snake status
+     * @return true if snake active, false if not
+     */
     public boolean isSnakeActive() {
         return isSnakeActive;
 
     }
-
+    /**
+     * Sets the snake status
+     * @param snakeActive - new snake status
+     */
     public void setSnakeActive(boolean snakeActive) {
 
         isSnakeActive = snakeActive;
     }
+    /**
+     * Returns current snake
+     * @return returns active snake on board
+     */
     public Animal getSnake() {
         return snake;
     }
+    /**
+     * Sets current snake
+     * @param snake - current snake to set
+     */
     public void setSnake(Animal snake) {
         this.snake = snake;
     }
-
+    /**
+     * Returns simulation logger
+     * @return Returns CsvLogger object
+     */
     public CsvLogger getLogger() {
         return logger;
     }
 
+    /**
+     * Returns current tick
+     * @return currentTick integer
+     */
+
     public void setSnakeCooldown(int snakeCooldown) {
         SnakeCooldown = snakeCooldown;
     }
+    /**
+     * Returns snake cooldown
+     * @return Current snake cooldown.
+     */
     public int getSnakeCooldown() {
         return SnakeCooldown;
     }
+    /**
+     * Returns current tick
+     * @return currentTick integer
+     */
     public int getCurrentTick() {
         return currentTick;
     }
+    /**
+     * Sets current tick
+     * @param currentTick - the new value of current tick
+     */
     public void setCurrentTick(int currentTick) {
         this.currentTick = currentTick;
     }

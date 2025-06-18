@@ -9,6 +9,11 @@ import org.swampsimulation.map.SwampArea;
 
 import java.util.Random;
 
+/**
+ * The animal abstract class is used for all living entities
+ * it provides basic attributes, like healthPoints, movementSpeed, species and life status
+ */
+
 public abstract class Animal extends Entity {
     private int healthPoints;
     private int movementSpeed;
@@ -19,11 +24,17 @@ public abstract class Animal extends Entity {
     protected CsvLogger logger;
 
 
-
+    /**
+     * Constructs Animal
+     *
+     * @param position - current animal position
+     * @param species - species of the animal
+     * @param logger - CsvLogger for logging events
+     */
     public Animal(Point position, AnimalSpecies species, CsvLogger logger) {
         super(position);
-        this.healthPoints = 1;
-        this.movementSpeed = 0;
+        this.healthPoints = 1; //default
+        this.movementSpeed = 0; //default
         this.isAlive = true;
         this.isMoving = true;
         this.species = species;
@@ -33,55 +44,117 @@ public abstract class Animal extends Entity {
         this.movementCoolDown = nr;
     }
 
-
+    /**
+     * Returns the current health points
+     * @return Current healthPoints
+     */
     public int getHealthPoints() {
         return healthPoints;
     }
+    /**
+     * Sets the health points of the animal
+     * @param healthPoints - New current health points
+     */
 
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
+    /**
+     * Returns the movement speed
+     * @return Current movement speed
+     */
+
     public int getMovementSpeed() {
         return movementSpeed;
     }
+
+    /**
+     * Sets the movement speed of the animal
+     * @param movementSpeed - New movement speed.
+     */
 
     public void setMovementSpeed(int movementSpeed) {
         this.movementSpeed = movementSpeed;
     }
 
+    /**
+     * Checks if the animal is alive
+     * @return true if the animal is alive, false if not
+     */
     public boolean isAlive() {
         return isAlive;
     }
+
+    /**
+     * Sets the alive status of the animal
+     * If health drops to 0 or below, this is set to false
+     * @param alive - New alive status.
+     */
 
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
 
+    /**
+     * Checks if the animal can move
+     * @return true if the animal is moving, false if not
+     */
     public boolean isMoving() {
         return isMoving;
     }
+
+    /**
+     * Sets the current moving status
+     * @param moving - true to enable movement, false to pause it
+     */
 
     public void setMoving(boolean moving) {
         isMoving = moving;
     }
 
+    /**
+     * Sets the new movement cooldown for the animal
+     * @param movementCoolDown - New cooldown value
+     */
+
     public void setMovementCoolDown(int movementCoolDown) {
         this.movementCoolDown = movementCoolDown;
     }
+    /**
+     * Returns the current movement cooldown of the animal
+     * @return current movement cooldown
+     */
     public int getmovementCoolDown() {
         return movementCoolDown;
     }
 
+    /**
+     * Updates the animal's state for the current tick
+     * Checks if the animal is alive and can move
+     *
+     * @param board - the board the animal is at
+     */
+
     public void update(Board board) {
-        if(isMoving){
-            animate();
-        }
         if(getHealthPoints()<=0){
             isAlive=false;
             board.removeAnimal(this);
         }
+        if(isMoving){
+            animate();
+        }
     }
+    /**
+     * Handles moving logic
+     * Animal moves to target point, if none exist moves randomly
+     * Searches for a new point if given species cannot move to SwampArea
+     * Movement is blocked by board boundaries
+     * Random movement is calculated based on current angle and its deviation
+     *
+     * @param board - the board the animal is at
+     * @param target - target point the animal is moving to
+     */
 
     public void move(Board board, Point target) {
         int currentX = getPosition().getX();
@@ -143,6 +216,11 @@ public abstract class Animal extends Entity {
         }
     }
 
+    /**
+     * Updates the animal's animation
+     * Cycles through images
+     */
+
     public void animate() {
 
         if (getImages() != null && !getImages().isEmpty()) {
@@ -151,7 +229,13 @@ public abstract class Animal extends Entity {
 
     }
 
-
+    /**
+     * Handles the animal fleeing logic
+     * Calculates the escape point and maximum angle so the animal doesn't rotate by 180 degrees
+     *
+     * @param danger - the threat animal
+     * @param board - current board the animal is at
+     */
     public void flee(Animal danger, Board board) {
         int currentX = getPosition().getX();
         int currentY = getPosition().getY();
@@ -175,9 +259,20 @@ public abstract class Animal extends Entity {
         Point fleeTarget = new Point(newX, newY);
         move(board, fleeTarget);
     }
+
+
+    /**
+     * Returns animal species
+     * @return animal species {@link AnimalSpecies}
+     */
     public AnimalSpecies getSpecies() {
         return species;
     }
+
+    /**
+     * Sets the species of the animal
+     * @param species - New animal species {@link AnimalSpecies} for this animal.
+     */
     public void setSpecies(AnimalSpecies species) {
         this.species = species;
     }

@@ -260,6 +260,7 @@ public abstract class Animal extends Entity {
         move(board, fleeTarget);
     }
 
+
     /**
      * Returns animal species
      * @return animal species {@link AnimalSpecies}

@@ -40,11 +40,10 @@ public class TomatoFrog extends Frog {
      * It searches for nearby {@link Fly} instances within its view distance
      * and eats the closest one if it's within striking range and not on mud.
      * @param board The current state of the simulation board.
-     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
      */
 
     @Override
-    public Animal hunt(Board board) {
+    public void hunt(Board board) {
         List<Animal> getNearby;
         double min_distance=Double.MAX_VALUE;
         Animal closest = null;
@@ -70,7 +69,6 @@ public class TomatoFrog extends Frog {
         else{
             move(board, null);
         }
-        return null;
     }
 
     /**

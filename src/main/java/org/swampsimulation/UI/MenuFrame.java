@@ -67,7 +67,7 @@ public class MenuFrame extends JFrame {
                 String heightText = heightField.getText();
                 String tpsText = endTimeField.getText();
                 String frogsText = frogsField.getText();
-
+                // Ensure all input fields are populated
                 if (widthText.isEmpty() || heightText.isEmpty() || tpsText.isEmpty() || frogsText.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "All fields must be filled", "Data error", JOptionPane.ERROR_MESSAGE);
                     return;

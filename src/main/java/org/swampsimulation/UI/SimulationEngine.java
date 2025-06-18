@@ -27,7 +27,7 @@ public class SimulationEngine {
         }
         this.currentTps = initialTps;
         this.onTickCallback = onTickCallback;
-
+        // Calculate delay in milliseconds for the desired TPS
         this.timer = new Timer(1000 / this.currentTps, e -> {
             ticks++;
             if (this.onTickCallback != null) {

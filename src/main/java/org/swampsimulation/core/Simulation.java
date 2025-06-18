@@ -66,7 +66,7 @@ public class Simulation {
     public void gameLoop(int currentTick) {
         int Flies=0;
         setCurrentTick(currentTick);
-        if(getSnake()!=null) {
+        if(getSnake()!=null) {      //Check if the snake is active and Alive
             if(getSnake().isAlive()) {
                 setSnakeActive(true);
                 logger.logEvent("Snake is active",currentTick);
@@ -89,7 +89,7 @@ public class Simulation {
             if(animal instanceof Fly) Flies++;
 
         }
-
+            //check if correct number of flies are on board
         if(Flies<20) {
             board.placeFlies();
         }

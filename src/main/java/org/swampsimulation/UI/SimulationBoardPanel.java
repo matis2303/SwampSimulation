@@ -65,6 +65,7 @@ public class SimulationBoardPanel extends JPanel {
             int Y = entity.getPosition().getY();
 
             AffineTransform oldTransform = g2d.getTransform();
+            //Apply rotation for correct rendering
             double rotationAngleRadians = Math.toRadians(entity.getRotation());
             int centerX = 0;
             int centerY = 0;

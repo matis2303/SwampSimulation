@@ -124,7 +124,7 @@ public abstract class Frog extends Animal {
      * @param board - current board the animal is at
      * @return the {@link Animal} that the frog hunts
      */
-    public abstract Animal hunt(Board board);
+    public abstract void hunt(Board board);
 
     /**
      * Method for animal eating other animal

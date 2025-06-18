@@ -41,11 +41,10 @@ public class BufoBufoFrog extends Frog {
      * and eats the closest one if it's within striking range
      * BufoBufoFrogs can hunt flies even if they are on mud.
      * @param board The current state of the simulation board.
-     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
      */
 
     @Override
-    public Animal hunt(Board board) {
+    public void hunt(Board board) {
         List<Animal> getNearby;
         double min_distance=Double.MAX_VALUE;
         Animal closest = null;
@@ -71,6 +70,5 @@ public class BufoBufoFrog extends Frog {
         else{
             move(board, null);
         }
-        return null;
     }
 }

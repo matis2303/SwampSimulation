@@ -108,7 +108,8 @@ public class BoardGenerator {
         double tomatoRatio = 0.18;
         double treeRatio = 0.26;
 
-        int totalFrogs = simConfig.frogsCount(); // do the ratio
+        int totalFrogs = simConfig.frogsCount();
+        // Calculate the number of each frog type based on predefined ratios
 
         int numBufos = (int) (bufoRatio * totalFrogs);
         int numPacmans = (int) (pacmanRatio * totalFrogs);

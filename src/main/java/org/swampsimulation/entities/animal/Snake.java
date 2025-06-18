@@ -56,7 +56,7 @@ public class Snake extends Animal{
      * @return Always returns null, as the direct action is eating, not returning the hunted animal.
      */
 
-    public Animal hunt(Board board) {
+    public void hunt(Board board) {
         List<Animal> getNearby;
         double min_distance=Double.MAX_VALUE;
         Animal closest = null;
@@ -75,7 +75,6 @@ public class Snake extends Animal{
                 }
             }
         }
-        return null;
     }
 
     /**

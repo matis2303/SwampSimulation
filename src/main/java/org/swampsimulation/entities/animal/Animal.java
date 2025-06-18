@@ -203,9 +203,9 @@ public abstract class Animal extends Entity {
                 potentialNewPosition.setLocation(newX, newY);
                 attempt++;
 
-
-
+                //Attempt to find a position outside mud for most frogs
             }while(!((this instanceof BufoBufoFrog) || (this instanceof Fly)) && SwampArea.isOnMud(potentialNewPosition) && attempt<10);
+
 
         }
         if (!((this instanceof BufoBufoFrog)|| (this instanceof Fly) )&& SwampArea.isOnMud(potentialNewPosition)) {

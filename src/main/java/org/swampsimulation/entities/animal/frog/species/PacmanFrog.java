@@ -12,11 +12,20 @@ import org.swampsimulation.map.SwampArea;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * The PacmanFrog class represents a specific frog species in the simulation.
+ * These frogs hunt flies and other frogs like {@link TomatoFrog}, {@link PacmanFrog} and {@link TreeFrog}.
+ * They hunt the same species only if there is no other food in range and the target {@link PacmanFrog} are a same or small {@link FrogSize}
+ */
 
 public class PacmanFrog extends Frog {
     private FrogSize size;
 
+    /**
+     * Constructs a new PacmanFrog object.
+     * @param position The initial {@link Point} position of the PacmanFrog.
+     * @param logger The {@link CsvLogger} instance for recording events.
+     */
 
     public PacmanFrog(Point position,CsvLogger logger) {
         super(position,AnimalSpecies.PACMAN, logger,1);
@@ -53,15 +62,36 @@ public class PacmanFrog extends Frog {
         setImages(path + "Pacman3.png");
     }
 
+    /**
+     * Sets the {@link FrogSize}
+     * @param size - the new FrogSize
+     */
+
+
     public void setSize(FrogSize size) {
         this.size = size;
     }
+
+
+    /**
+     * Returns the {@link FrogSize}
+     * @return Returns the FrogSize
+     */
+
     public FrogSize getSize() {
         return size;
     }
 
+    /**
+     * Implements the hunting behavior specific to the PacmanFrog.
+     * It searches for nearby {@link Fly} instances within its view distance
+     * and eats the closest one if it's within striking range and not on mud.
+     * If none were found does the same for other types of frogs and the frog of its own species
+     * @param board The current state of the simulation board.
+     */
+
     @Override
-    public Animal hunt(Board board) {
+    public void hunt(Board board) {
         List<Animal> nearbyAnimals = board.getNearbyAnimals(this, 180);
         Animal target = null;
         double minDistance = Double.MAX_VALUE;
@@ -125,8 +155,15 @@ public class PacmanFrog extends Frog {
         } else {
             move(board, null);
         }
-        return null;
     }
+
+    /**
+     * Updates the PacmanFrog's state for the current tick.
+     * checks for nearby predators
+     * ({@link BufoBufoFrog} and initiates fleeing if detected.
+     * If no immediate predator threat, it proceeds with hunting.
+     * @param board The current state of the simulation board.
+     */
     @Override
     public void update(Board board) {
         super.update(board);

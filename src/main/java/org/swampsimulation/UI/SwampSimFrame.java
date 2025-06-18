@@ -14,10 +14,25 @@ import java.awt.*;
  */
 
 public class SwampSimFrame extends JFrame {
+    /**
+     * SimulationEngine attribute is used for ticks
+     */
     private SimulationEngine engine;
+    /**
+     * Panel for sliders and user controls
+     */
     private ControlPanel controlPanel;
+    /**
+     * SimulationBoardPanel used for rendering
+     */
     private SimulationBoardPanel boardPanel;
+    /**
+     * Simulation that is currently running
+     */
     private Simulation coreSimulation;
+    /**
+     * Simulation END TICK
+     */
     private int simulationEndTime;
 
     /**

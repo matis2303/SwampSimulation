@@ -116,18 +116,34 @@ public class Entity implements Randomizer {
     public ArrayList<BufferedImage> getImages() {
         return Images;
     }
-
+    /**
+     * Sets sprite integer for image indexing
+     * @param spriteInt - New spriteint
+     */
     public void setSpriteInt(int spriteInt) {
         this.spriteInt = spriteInt;
     }
-
+    /**
+     * Returns spriteInt for image indexing
+     * @return Returns current spriteInt
+     */
     public int getSpriteInt() {
         return spriteInt;
     }
 
+    /**
+     * Sets sprite size for rendering and point calculations
+     * @param width - sprite x
+     * @param height - sprite y
+     */
+
     public void setSpriteSize(int width, int height) {
         SpriteSize = new Point(width, height);
     }
+    /**
+     * Returns sprite size as a {@link Point}
+     * @return SpriteSize {@link Point}
+     */
 
     public Point getSpriteSize() {
         return SpriteSize;

@@ -6,6 +6,9 @@ package org.swampsimulation.entities.animal.frog.species;
  */
 
 public interface Hide {
+    /**
+     * default method for hiding
+     */
     public default void hide() {
         // Default empty implementation, specific hiding logic will be in implementing classes.
     }

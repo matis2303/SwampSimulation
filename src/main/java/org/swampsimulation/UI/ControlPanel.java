@@ -9,9 +9,21 @@ import javax.swing.*;
  */
 
 public class ControlPanel extends JPanel {
+    /**
+     * Current TPS
+     */
     private JLabel tickLabel;
+    /**
+     * Current TPS Label
+     */
     private JLabel tpsLabel;
+    /**
+     * Max ticks
+     */
     private JLabel maxTicksLabel;
+    /**
+     * SimulationEngine is used for ticks
+     */
     private SimulationEngine engine;
 
     /**

@@ -22,7 +22,13 @@ import java.io.IOException;
  */
 
 public class SimulationBoardPanel extends JPanel {
+    /**
+     * {@link Board} the simulation is on
+     */
     private Board board;
+    /**
+     * Image used for background, purely visual
+     */
     private BufferedImage backgroundImage;
 
     /**

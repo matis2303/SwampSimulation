@@ -21,6 +21,9 @@ public abstract class Animal extends Entity {
     private boolean isMoving;
     private int movementCoolDown;
     private AnimalSpecies species;
+    /**
+     * CsvLogger for logging each animal event and action
+     */
     protected CsvLogger logger;
 
 

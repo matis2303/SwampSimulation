@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Simulation board, stores all the entities
+ * Is responsible for adding, deleting
+ * and searching for all sorts of entities.
+ * It's also responsible for adding Flies during the simulation
+ */
+
 public class Board {
     private ArrayList<Animal> animalsOnBoard;
     private ArrayList<Plants> plantsOnBoard;
@@ -20,14 +27,28 @@ public class Board {
     private int height;
     private Simulation simulation;
 
+
+    /**
+     * Makes a board with given width and height
+     * Initializes empty ArrayLists for animals, plants and entities
+     * @param width - board x in pixels
+     * @param height - board y in pixels
+     */
+
     public Board(int width, int height) {
         this.animalsOnBoard = new ArrayList<>();
         this.width = width;
         this.height = height;
         this.plantsOnBoard = new ArrayList<>();
         this.entitiesOnBoard = new ArrayList<>();
-
     }
+
+    /**
+     * Retrives animal at a Point position
+     * @param pos position
+     * @return Animal at a given point or null if none were found
+     */
+
 
     public Animal getAnimalAt(Point pos) {
         for (Animal animal : animalsOnBoard) {
@@ -37,23 +58,48 @@ public class Board {
         }
         return null;
     }
+    /**
+     * Returns a list of all animals currently on the board.
+     *
+     * @return A new ArrayList containing all animals on the board.
+     */
 
     public List<Animal> getAllAnimals() {
         return new ArrayList<>(animalsOnBoard);
     }
+    /**
+     * Returns a list of all plants currently on the board.
+     *
+     * @return A new ArrayList containing all plants on the board.
+     */
     public List<Plants> getAllPlants() {
         return new ArrayList<>(plantsOnBoard);
     }
+    /**
+     * Returns a list of all entities currently on the board.
+     *
+     * @return A new ArrayList containing all entities on the board.
+     */
     public List<Entity> getAllEntities() {
         return new ArrayList<>(entitiesOnBoard);
     }
 
+    /**
+     * Adds given animal to the board ArrayLists
+     *
+     * @param animal - animal to add
+     */
     public void addAnimal(Animal animal) {
         if (animal != null) {
             this.animalsOnBoard.add(animal);
             this.entitiesOnBoard.add(animal);
         }
     }
+    /**
+     * Adds given plant to the board ArrayLists
+     *
+     * @param plant - Plant to add
+     */
     public void addPlant(Plants plant) {
         if (plant != null) {
             this.plantsOnBoard.add(plant);
@@ -61,11 +107,23 @@ public class Board {
         }
     }
 
-
+    /**
+     * Removes given animal from the board ArrayLists
+     *
+     * @param animal - animal to remove
+     */
     public void removeAnimal(Animal animal) {
         this.animalsOnBoard.remove(animal);
         this.entitiesOnBoard.remove(animal);
     }
+    /**
+     * Finds and returns animals within given attackers range.
+     * Only Alive animals are included when searching for targets
+     *
+     * @param attacker - searching animal
+     * @param range - maximum attacker range
+     * @return Return ArrayList of nearby animals
+     */
 
     public List<Animal> getNearbyAnimals(Animal attacker, int range) {
         ArrayList<Animal> nearby = new ArrayList<>();
@@ -79,7 +137,13 @@ public class Board {
         }
         return nearby;
     }
-
+    /**
+     * Finds and returns plants within given hiders range.
+     *
+     * @param Hider - searching animal
+     * @param range - maximum Hider range
+     * @return Return ArrayList of nearby plants
+     */
     public Plants getNearbyPlants(Animal Hider, int range) {
         double min_distance=Double.MAX_VALUE;
         Plants closest = null;
@@ -97,6 +161,10 @@ public class Board {
         return closest;
     }
 
+    /**
+     *Places 1 fly at a random location
+     */
+
     public void placeFlies(){
         for(int x = 0; x < 1; x++) {
             Random rand = new Random();
@@ -109,19 +177,36 @@ public class Board {
             addAnimal(fly);
         }
     }
+    /**
+     *Sets the simulation parameter connected to the board
+     * @param simulation  - simulation to be connected
+     */
+
 
     public void setSimulation(Simulation simulation) {
         this.simulation = simulation;
     }
+    /**
+     *Returns the simulation parameter connected to the board
+     * @return Returns the simulation it's connected with
+     */
     
     public Simulation getSimulation() {
         return simulation;
     }
 
+    /**
+     *Returns the board width
+     * @return Returns the board width (x) in pixels
+     */
+
     public int getWidth() {
         return width;
     }
-
+    /**
+     *Returns the board Height
+     * @return Returns the board Height (y) in pixels
+     */
     public int getHeight() {
         return height;
     }

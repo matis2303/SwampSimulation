@@ -14,17 +14,32 @@ import org.swampsimulation.map.SwampArea;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ *The BoardGenerator is responsible for adding animals and plants onto the board
+ * and simulation area.
+ */
+
 public class BoardGenerator {
     private SimulationConfig simConfig;
     private CsvLogger logger;
 
     Random rand = new Random();
 
-
+    /**
+     *Constructs BoardGenerator
+     * @param simConfig - simulation config containing, like board width, Height and max frog count
+     * @param logger - CsvLogger used when creating animals
+     */
     public BoardGenerator(SimulationConfig simConfig, CsvLogger logger) {
         this.simConfig = simConfig;
         this.logger = logger;
     }
+    /**
+     *Places plants onto the board, with the max count calculated based on board dimensions
+     * Ensures that Bushes and Lilies are placed at correct positions, Lilies on SwampArea and Bushes not.
+     * @param board - board for the plants to be placed at
+     */
+
 
     public void placePlants(Board board) {
         double Lilies = 0.5;
@@ -79,6 +94,12 @@ public class BoardGenerator {
         }
 
     }
+    /**
+     *Places animals onto the board, with the max count taken from config
+     * Ensures that no frogs are placed on SwampArea.
+     * Frogs are ratioed based on type.
+     * @param board - board for the animals to be placed at
+     */
 
 
     public void placeInitialAnimals(Board board) {
@@ -87,7 +108,7 @@ public class BoardGenerator {
         double tomatoRatio = 0.18;
         double treeRatio = 0.26;
 
-        int totalFrogs = simConfig.frogsCount();
+        int totalFrogs = simConfig.frogsCount(); // do the ratio
 
         int numBufos = (int) (bufoRatio * totalFrogs);
         int numPacmans = (int) (pacmanRatio * totalFrogs);
@@ -98,7 +119,7 @@ public class BoardGenerator {
         int difference = totalFrogs - currentSum;
 
         if (difference > 0) {
-            numPacmans += difference;
+            numPacmans += difference;   // if there are missing animals add Pacmans
         }
 
         ArrayList<Integer> frogTypesToPlace = new ArrayList<>();
@@ -143,7 +164,11 @@ public class BoardGenerator {
         }
         System.out.print(board.getAllAnimals().size());
     }
-
+    /**
+     * Places a predefined initial number of Flies at the board
+     *
+     * @param board - board for the animals to be placed at
+     */
 
     public void placeInitialFlies(Board board){
         for(int x = 0; x < 22; x++) {

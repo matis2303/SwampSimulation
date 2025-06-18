@@ -7,7 +7,10 @@ import org.swampsimulation.entities.animal.Snake;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * Simulation class is the main simulation class, it makes a simulation, runs the gameLoop.
+ * It's also used for fly generation and snake appearance
+ */
 
 public class Simulation {
     private Board board;
@@ -17,6 +20,12 @@ public class Simulation {
     private Animal snake;
     private int SnakeCooldown;
     private int currentTick;
+
+
+    /**
+     * Constructs Simulation
+     * @param board - the board where the simulation takes place
+     */
 
     public Simulation(Board board) {
         this.board = board;
@@ -30,7 +39,10 @@ public class Simulation {
         this.currentTick = 0;
     }
 
-
+    /**
+     * Setup ups a Simulation
+     * Used to check if animals are on board
+     */
 
     public void setupSimulation() {
 

@@ -34,7 +34,7 @@ public class MenuFrame extends JFrame {
         ((AbstractDocument) endTimeField.getDocument()).setDocumentFilter(new PositiveIntegerDocumentFilter());
 
         JTextField frogsField = new JTextField("13");
-        ((AbstractDocument) widthField.getDocument()).setDocumentFilter(new PositiveIntegerDocumentFilter());
+        ((AbstractDocument) frogsField.getDocument()).setDocumentFilter(new PositiveIntegerDocumentFilter());
 
 
         JPanel widthPanel = createLabeledField("Width:", widthField);
@@ -59,7 +59,7 @@ public class MenuFrame extends JFrame {
                 String tpsText = endTimeField.getText();
                 String frogsText = frogsField.getText();
 
-                if (widthText.isEmpty() || heightText.isEmpty() || tpsText.isEmpty()) {
+                if (widthText.isEmpty() || heightText.isEmpty() || tpsText.isEmpty() || frogsText.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "All fields must be filled", "Data error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -73,6 +73,13 @@ public class MenuFrame extends JFrame {
                     JOptionPane.showMessageDialog(this,
                             "Ticks number must be positive.",
                             "Error: TPS count", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (frogsValue <= 0) {
+                    JOptionPane.showMessageDialog(this,
+                            "Frogs number must be positive.We love frogs",
+                            "Error: frogs count", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 

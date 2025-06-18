@@ -16,9 +16,19 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * The SimulationBoardPanel is a JPanel responsible for rendering the simulation board,
+ * include the background, mud area, all entities.
+ */
+
 public class SimulationBoardPanel extends JPanel {
     private Board board;
     private BufferedImage backgroundImage;
+
+    /**
+     * Makes a new SimulationBoardPanel.
+     * @param board The Board containing all entities to be rendered.
+     */
 
     public SimulationBoardPanel(Board board) {
         this.board = board;
@@ -29,17 +39,25 @@ public class SimulationBoardPanel extends JPanel {
         }
     }
 
+    /**
+     * Overrides the paintComponent method to custom draw the simulation board.
+     * Draws the background, the mud area, and all entities on the board.
+     * @param g The Graphics object.
+     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
+        // Draw the background a solid color if the image is not available.
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
         } else {
             g.setColor(new Color(61, 70, 40));
             g.fillRect(0, 0, getWidth(), getHeight());
         }
+        // Draw the swamp mud area.
         SwampArea.createMud(g);
 
         for (Entity entity : board.getAllEntities()) {

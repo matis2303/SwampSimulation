@@ -8,12 +8,23 @@ import org.swampsimulation.core.BoardGenerator;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The SwampSimFrame is the main JFrame for displaying running simulation.
+ * It integrates the simulation board, control panel, and the simulation engine.
+ */
+
 public class SwampSimFrame extends JFrame {
     private SimulationEngine engine;
     private ControlPanel controlPanel;
     private SimulationBoardPanel boardPanel;
     private Simulation coreSimulation;
     private int simulationEndTime;
+
+    /**
+     * Makes a new SwampSimFrame with the given simulation configuration.
+     * Sets up the board, places initial entities, starts the simulation engine.
+     * @param config The {@link SimulationConfig} containing parameters.
+     */
 
     public SwampSimFrame(SimulationConfig config) {
         setTitle("Swamp Simulation - Running");

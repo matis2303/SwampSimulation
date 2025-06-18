@@ -7,8 +7,17 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import java.awt.*;
 
+/**
+ * MenuFrame makes menu at the beginning of the simulation
+ * User can set width, height, simulation endtime and frogs count
+ */
+
 public class MenuFrame extends JFrame {
     private static final int MIN_TPS = 1;
+
+    /**
+     * Constructs a new MenuFrame
+     */
 
     public MenuFrame() {
         setTitle("Swamp Simulation – Menu");
@@ -121,6 +130,12 @@ public class MenuFrame extends JFrame {
         add(mainPanel);
         setVisible(true);
     }
+    /**
+     * Creates a JPanel with a label and a text field
+     * @param labelText yhe text for the label.
+     * @param textField makes the label.
+     * @return labeled text field.
+     */
 
     private JPanel createLabeledField(String labelText, JTextField textField) {
         JPanel panel = new JPanel();
@@ -138,7 +153,21 @@ public class MenuFrame extends JFrame {
         return panel;
     }
 
+    /**
+     * A DocumentFilter that allows only positive integer digits.
+     */
+
     static class PositiveIntegerDocumentFilter extends DocumentFilter {
+
+        /**
+         * Makes string into digit.
+         * @param fb FilterBypass to the Document.
+         * @param offset The offset into the document to insert the string.
+         * @param string The string to insert.
+         * @param attr The attributes for the inserted content.
+         * @throws BadLocationException If the offset is invalid.
+         */
+
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
             if (string == null) return;
@@ -149,6 +178,16 @@ public class MenuFrame extends JFrame {
             }
         }
 
+        /**
+         * Replaces with a new string, allowing only digits.
+         * @param fb FilterBypass to the Document.
+         * @param offset The offset into the document to replace the content.
+         * @param length The length of the content to replace.
+         * @param text The new string to insert.
+         * @param attrs The attributes for the new content.
+         * @throws BadLocationException If the offset or length is invalid.
+         */
+
         @Override
         public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
             if (text == null) return;
@@ -158,6 +197,12 @@ public class MenuFrame extends JFrame {
                 Toolkit.getDefaultToolkit().beep();
             }
         }
+
+        /**
+         * Checks if the string contains only digit.
+         * @param text The string to check.
+         * @return true if the string contains only digits, false if not.
+         */
 
         private boolean containsOnlyDigits(String text) {
             for (char c : text.toCharArray()) {

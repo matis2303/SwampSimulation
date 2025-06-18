@@ -2,15 +2,27 @@ package org.swampsimulation.UI;
 
 import javax.swing.*;
 
+/**
+ * The ControlPanel makes user interface panel
+ * contains controls for the simulation - start, stop, reset button
+ * and a slider to control the simulation speed (TPS).
+ */
+
 public class ControlPanel extends JPanel {
     private JLabel tickLabel;
     private JLabel tpsLabel;
     private JLabel maxTicksLabel;
     private SimulationEngine engine;
 
+    /**
+     * Makes a new ControlPanel.
+     * @param engine The simulation engine that control panel will interact with.
+     * @param initialTps The initial TPS for the simulation.
+     * @param simulationEndTime The maximum number of ticks the simulation will run for.
+     */
+
     public ControlPanel(SimulationEngine engine, int initialTps, int simulationEndTime) {
         this.engine = engine;
-
 
         JButton startButton = new JButton("Start");
         startButton.setFocusPainted(false);
@@ -48,6 +60,11 @@ public class ControlPanel extends JPanel {
         add(new JLabel("   Speed:"));
         add(tpsSlider);
     }
+
+    /**
+     * Updates the displayed current tick on the control panel.
+     * @param currentTicks The current tick number of the simulation.
+     */
 
     public void updateTickDisplay(int currentTicks) {
         tickLabel.setText("Tiks: " + currentTicks);

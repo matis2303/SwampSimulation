@@ -11,8 +11,19 @@ import org.swampsimulation.map.SwampArea;
 
 import java.util.List;
 
+/**
+ * The TomatoFrog class represents a specific frog species in the simulation.
+ * These frogs hunt flies and also flee from larger predators
+ * like {@link BufoBufoFrog} and {@link PacmanFrog}.
+ */
 
 public class TomatoFrog extends Frog {
+
+    /**
+     * Constructs a new TomatoFrog object.
+     * @param position The initial {@link Point} position of the TomatoFrog.
+     * @param logger The {@link CsvLogger} instance for recording events.
+     */
 
     public TomatoFrog(Point position,CsvLogger logger) {
         super(position, AnimalSpecies.TOMATO_FROG, logger,2);
@@ -23,6 +34,14 @@ public class TomatoFrog extends Frog {
         setSpriteSize(78,78);
         setMovementSpeed(37);
     }
+
+    /**
+     * Implements the hunting behavior specific to the TomatoFrog.
+     * It searches for nearby {@link Fly} instances within its view distance
+     * and eats the closest one if it's within striking range and not on mud.
+     * @param board The current state of the simulation board.
+     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
+     */
 
     @Override
     public Animal hunt(Board board) {
@@ -53,6 +72,14 @@ public class TomatoFrog extends Frog {
         }
         return null;
     }
+
+    /**
+     * Updates the TomatoFrog's state for the current tick.
+     * checks for nearby predators
+     * ({@link BufoBufoFrog} or {@link PacmanFrog}) and initiates fleeing if detected.
+     * If no immediate predator threat, it proceeds with hunting.
+     * @param board The current state of the simulation board.
+     */
 
     @Override
     public void update(Board board) {

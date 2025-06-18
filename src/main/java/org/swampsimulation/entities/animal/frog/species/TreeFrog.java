@@ -12,7 +12,21 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The TreeFrog class represents a specific frog species in the simulation known for its hiding ability.
+ * TreeFrogs hunt flies and can hide from specific predators like BufoBufo, Pacman, and Tomato frogs.
+ * They also seat near bushes if no flies are nearby.
+ */
+
 public class TreeFrog extends Frog implements Hide{
+
+    /**
+     * Constructs a new TreeFrog object.
+     * Initializes the tree frog with a random sprite image from several variations,
+     * sets its movement speed, and sprite size.
+     * @param position The initial {@link Point} position of the TreeFrog.
+     * @param logger The {@link CsvLogger} instance for recording events.
+     */
 
     public TreeFrog(Point position, CsvLogger logger) {
         super(position, AnimalSpecies.TREE_FROG,logger,0);
@@ -23,6 +37,16 @@ public class TreeFrog extends Frog implements Hide{
         setMovementSpeed(35);
         setSpriteSize(70,70);
     }
+
+    /**
+     * Implements the hunting behavior specific to the TreeFrog.
+     * It searches for nearby {@link Fly} instances within its view distance
+     * and eats the closest one if it's within striking range  and not on mud.
+     * If no flies are found, it seeks out the closest bushes
+     * to move towards, otherwise it performs random movement.
+     * @param board The current state of the simulation board.
+     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
+     */
 
     @Override
     public Animal hunt(Board board) {
@@ -58,6 +82,16 @@ public class TreeFrog extends Frog implements Hide{
         return null;
     }
 
+        /**
+        * Selects a random string from four provided options.
+        * Used for choosing different images of the TreeFrog.
+        * @param a The first string option.
+        * @param b The second string option.
+        * @param c The third string option.
+        * @param d The fourth string option.
+        * @return One of the input strings (a, b, c, or d) chosen randomly, or null if an unexpected random number is generated.
+        */
+
         String Random(String a, String b, String c,String d) {
         Random r = new Random();
         switch (r.nextInt(4)) {
@@ -73,6 +107,15 @@ public class TreeFrog extends Frog implements Hide{
                 return null;
         }
     }
+
+    /**
+     * Updates the TreeFrog's state for the current tick.
+     * checks for nearby predators
+     * ({@link BufoBufoFrog}, {@link PacmanFrog}, or {@link TomatoFrog})
+     * initiates hiding behavior if detected within a certain range.
+     * If no immediate predator threat, it stops hiding.
+     * @param board The current state of the simulation board.
+     */
 
     @Override
     public void update(Board board) {
@@ -105,6 +148,13 @@ public class TreeFrog extends Frog implements Hide{
             }
         }
     }
+
+    /**
+     * Returns the sprite image for the TreeFrog.
+     * If the TreeFrog is hiding and has a third sprite image available, it returns that.
+     * Otherwise, it returns the sprite based on the animation logic from the parent class.
+     * @return The {@link BufferedImage} representing the current TreeFrog sprite.
+     */
 
     @Override
     public BufferedImage getSprite() {

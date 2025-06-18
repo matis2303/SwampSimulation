@@ -10,8 +10,19 @@ import org.swampsimulation.core.CsvLogger;
 
 import java.util.List;
 
+/**
+ * The BufoBufoFrog class represents a specific frog species in the simulation.
+ * These frogs hunt flies
+ * BufoBufoFrogs are able to move onto mud areas.
+ */
 
 public class BufoBufoFrog extends Frog {
+
+    /**
+     * Constructs a new BufoBufoFrog object.
+     * @param position The initial {@link Point} position of the BufoBufoFrog.
+     * @param logger The {@link CsvLogger} instance for recording events.
+     */
 
     public BufoBufoFrog(Point position,CsvLogger logger) {
         super(position,AnimalSpecies.BUFO_BUFO, logger,0);
@@ -23,6 +34,15 @@ public class BufoBufoFrog extends Frog {
 
         setMovementSpeed(47);
     }
+
+    /**
+     * Implements the hunting behavior specific to the BufoBufoFrog.
+     * searches for nearby {@link Fly} instances within its view distance
+     * and eats the closest one if it's within striking range
+     * BufoBufoFrogs can hunt flies even if they are on mud.
+     * @param board The current state of the simulation board.
+     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
+     */
 
     @Override
     public Animal hunt(Board board) {

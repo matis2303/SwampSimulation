@@ -53,7 +53,6 @@ public class Snake extends Animal{
      * The snake searches for nearby frogs
      * eats the closest one if it's within striking range
      * @param board The current state of the simulation board.
-     * @return Always returns null, as the direct action is eating, not returning the hunted animal.
      */
 
     public void hunt(Board board) {

@@ -122,7 +122,6 @@ public abstract class Frog extends Animal {
      * Each frog implements its own hunting logic
      *
      * @param board - current board the animal is at
-     * @return the {@link Animal} that the frog hunts
      */
     public abstract void hunt(Board board);
 

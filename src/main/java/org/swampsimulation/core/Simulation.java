@@ -203,7 +203,7 @@ public class Simulation {
 
     /**
      * Returns current tick
-     * @return currentTick integer
+     * @param snakeCooldown - new snakeCooldown int
      */
 
     public void setSnakeCooldown(int snakeCooldown) {

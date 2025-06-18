@@ -7,6 +7,12 @@ import org.swampsimulation.UI.MenuFrame;
 
 public class Run {
     /**
+     * Constructs Run
+     */
+
+    public Run() {
+    }
+    /**
      * The main method to start the simulation.
      * @param args Command line arguments (not used ).
      */

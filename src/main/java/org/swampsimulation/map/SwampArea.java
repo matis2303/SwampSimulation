@@ -13,6 +13,12 @@ import java.awt.geom.Rectangle2D;
 
 public class SwampArea {
     /**
+     * Creates SwampArea
+     */
+    public SwampArea(){
+
+    }
+    /**
      * A buffer size used when checking if an animal is near mud area.
      */
     private static double MUD_SIZE_BUFFER = 20.0;

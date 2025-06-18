@@ -98,12 +98,21 @@ public class Entity implements Randomizer {
         }
     }
 
+    /**
+     * Returns image of Entity
+     * @return BufferedImage - returns bufferedimage of entity
+     */
     public BufferedImage getSprite() {
         if (getImages().isEmpty()) {
             return null;
         }
         return getImages().get(spriteInt);
     }
+
+    /**
+     * Returns the list of all images
+     * @return list of all images
+     */
     public ArrayList<BufferedImage> getImages() {
         return Images;
     }
@@ -111,12 +120,15 @@ public class Entity implements Randomizer {
     public void setSpriteInt(int spriteInt) {
         this.spriteInt = spriteInt;
     }
+
     public int getSpriteInt() {
         return spriteInt;
     }
+
     public void setSpriteSize(int width, int height) {
         SpriteSize = new Point(width, height);
     }
+
     public Point getSpriteSize() {
         return SpriteSize;
     }
